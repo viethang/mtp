@@ -1,11 +1,22 @@
 <div class="itineraries">
-  <div *ngFor="let itinerary of itineraries">
-    <div class="itinerary">
-      <div class="itinerary-summary">
-        <span>Depart: {{itinerary.startTime | date : 'HH:mm'}}</span> &nbsp;
-        <span>Arrive: {{itinerary.endTime | date: 'HH:mm'}}</span>
-        <!--<span>Duration: {{itinerary.duration | duration: }}</span>-->
-      </div>
+  <div *ngFor="let itinerary of itineraries; let idx = index"
+       class="itinerary">
+    <div class="itinerary-summary">
+      <span>{{idx+1}}.</span>
+      <span>Depart: {{itinerary.startTime | date : 'HH:mm'}}</span> &nbsp;
+      <span>Arrive: {{itinerary.endTime | date: 'HH:mm'}}</span>
+      <span>Duration: {{itinerary.duration | duration}}</span>
+    </div>
+    <div class="itinerary-details">
+      <ol>
+        <li class="itinerary-leg" *ngFor="let leg of itinerary.legs">
+          <span>{{leg.mode}} {{leg.routeLongName}} -- {{leg.agencyName}} </span><br/>
+          <span>{{leg.from.name}}  {{leg.startTime | date: 'HH:mm'}}
+              - {{leg.to.name}} {{leg.endTime | date : 'HH:mm'}}
+              <strong>{{leg.duration | duration}}</strong>
+          </span>
+        </li>
+      </ol>
     </div>
   </div>
 </div>

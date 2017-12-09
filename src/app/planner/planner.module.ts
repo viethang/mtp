@@ -7,12 +7,14 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ItinerariesComponent } from './itineraries/itineraries.component';
+import { UtilsModule } from '../utils/utils.module';
 
 @NgModule({
   imports: [
     CommonModule,
     NguiAutoCompleteModule,
     HttpClientModule,
+    UtilsModule,
     BrowserModule
   ],
   declarations: [
