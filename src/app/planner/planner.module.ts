@@ -6,6 +6,7 @@ import { AutocompleteLocationComponent } from './autocomplete-location/autocompl
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ItinerariesComponent } from './itineraries/itineraries.component';
 
 @NgModule({
   imports: [
@@ -18,8 +19,55 @@ import { HttpClientModule } from '@angular/common/http';
     PlannerComponent,
     SearchboxComponent,
     AutocompleteLocationComponent,
-    ],
+    ItinerariesComponent,
+  ],
   exports: [PlannerComponent]
 })
 export class PlannerModule {
 }
+
+export interface Itinerary {
+  duration: number; // millisecond
+  startTime: number; // millisecond
+  endTime: number; // millisecond
+  legs: Leg[];
+}
+
+export enum TransitMode {
+  BUS,
+  WALK,
+  SUBWAY,
+}
+
+export enum TransitVertexType {
+  NORMAL,
+  TRANSIT,
+}
+
+export interface Leg {
+  startTime: number; // millisecond
+  duration: number; // millisecond
+  endTime: number;  // millisecond
+  distance: number; // metter
+  mode: TransitMode;
+  agencyTimeZonOffset: number; // millisecond
+  from: Place;
+  to: Place;
+  legGeometry: { points: string, length: number }; // points is the encoded polyline
+  agencyName: string;
+  headsign: string;
+  serviceDate: string; // yyyyMMdd
+  routeLongName: string;
+  route: string;
+  routesShortName: string;
+}
+
+export interface Place {
+  name: string;
+  lon: number;
+  lat: number;
+  vertexType: TransitVertexType;
+  arrival: number; // millisecond
+  departure: number; // millisecond
+}
+

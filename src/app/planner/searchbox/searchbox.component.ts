@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Itinerary } from '../planner.module';
 
 @Component({
   selector: 'app-searchbox',
@@ -13,6 +14,8 @@ export class SearchboxComponent implements OnInit {
   public gotResults: boolean;
   public searchTime = '10:00';
   public searchDate = '2017-12-09';
+
+  public itineraries: Itinerary[];
 
   constructor(private http: HttpClient) {
   }
@@ -47,10 +50,16 @@ export class SearchboxComponent implements OnInit {
     this.http.get(url, {
       params: params
     }).subscribe((data) => {
-      console.log(data);
+      this.itineraries = this.parseItineraries(data);
       this.gotResults = true;
     });
 
+  }
+
+  private parseItineraries(data: any): Itinerary[] {
+    //  parse itineraries from API response
+    // TODO: filter only interested fields
+    return data.plan.itineraries;
   }
 }
 

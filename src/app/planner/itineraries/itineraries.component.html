@@ -1,0 +1,11 @@
+<div class="itineraries">
+  <div *ngFor="let itinerary of itineraries">
+    <div class="itinerary">
+      <div class="itinerary-summary">
+        <span>Depart: {{itinerary.startTime | date : 'HH:mm'}}</span> &nbsp;
+        <span>Arrive: {{itinerary.endTime | date: 'HH:mm'}}</span>
+        <!--<span>Duration: {{itinerary.duration | duration: }}</span>-->
+      </div>
+    </div>
+  </div>
+</div>
