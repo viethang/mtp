@@ -1,4 +1,13 @@
 <p>
   searchbox works!
-  <app-autocomplete-location class="autocomplete-location"></app-autocomplete-location>
+  <app-autocomplete-location class="autocomplete-location"
+                             (locationSelected)="fromLocationSelected($event)"
+                             [placeholder]="'From'">
+  </app-autocomplete-location>
+  <app-autocomplete-location class="autocomplete-location"
+                             (locationSelected)="toLocationSelected($event)"
+                             [placeholder]="'To'">
+  </app-autocomplete-location>
+  <button (click)="launchSearch()">Find</button>
+
 </p>

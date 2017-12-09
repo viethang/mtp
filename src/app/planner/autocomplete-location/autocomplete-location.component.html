@@ -1,8 +1,9 @@
 <div>
   <input ngui-auto-complete
-         [(ngModel)]="selected.description"
+         [(ngModel)]="selected"
          (valueChanged)="valueChangeHandle($event)"
          [source]="observableSource.bind(this)"
          [list-formatter]="addressFormatter"
-         [open-on-focus]="openOnFocus"/>
+         [open-on-focus]="openOnFocus"
+         placeholder="{{placeholder}}"/>
 </div>

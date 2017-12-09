@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,8 +8,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./autocomplete-location.component.css']
 })
 export class AutocompleteLocationComponent implements OnInit {
-  public selected = {description: ''};
+  public selected;
   public openOnFocus = false;
+
+  @Output()
+  public locationSelected = new EventEmitter();
+
+  @Input()
+  public placeholder: string;
 
   constructor(private http: HttpClient) {
   }
@@ -29,8 +35,8 @@ export class AutocompleteLocationComponent implements OnInit {
   }
 
   public valueChangeHandle($event) {
-    this.selected = $event;
-
+    this.selected = $event.description;
+    this.locationSelected.emit($event);
   }
 
   ngOnInit() {
