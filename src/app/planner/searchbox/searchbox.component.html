@@ -8,8 +8,10 @@
                              (locationSelected)="toLocationSelected($event)"
                              [placeholder]="'To'">
   </app-autocomplete-location>
-  <button (click)="launchSearch()">Find</button>
+  <button (click)="launchSearch()">Find</button><br/>
 
-  <app-itineraries [itineraries]="itineraries"></app-itineraries>
+  <button (click)="addFavorite()">Add to favorite</button>
+
+  <app-itineraries [itineraries]="searchService.itineraries"></app-itineraries>
 
 </p>

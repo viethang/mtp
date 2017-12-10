@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Itinerary } from '../planner.module';
+import { FavoritesService } from '../favorites/favorites.service';
+import { SearchService } from './search.service';
 
 @Component({
   selector: 'app-searchbox',
@@ -17,7 +19,9 @@ export class SearchboxComponent implements OnInit {
 
   public itineraries: Itinerary[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private favoritesService: FavoritesService,
+              public searchService: SearchService) {
   }
 
   ngOnInit() {
@@ -54,6 +58,10 @@ export class SearchboxComponent implements OnInit {
       this.gotResults = true;
     });
 
+  }
+
+  public addFavorite() {
+    this.favoritesService.addFavorite(this.fromLocation, this.toLocation);
   }
 
   private parseItineraries(data: any): Itinerary[] {

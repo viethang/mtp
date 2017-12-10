@@ -1,0 +1,10 @@
+<div class="favorites">
+  favorites works!
+  <ol>
+     <li *ngFor="let favorite of favoriteDepArrs"
+     (click)="launchSearch(favorite)">
+      <a href="#">{{favorite.departure.description}} -- {{favorite.arrival.description}}</a>
+  </li>
+  </ol>
+
+</div>

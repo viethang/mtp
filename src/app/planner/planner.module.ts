@@ -8,6 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ItinerariesComponent } from './itineraries/itineraries.component';
 import { UtilsModule } from '../utils/utils.module';
+import { FavoritesComponent } from './favorites/favorites.component';
+import { FavoritesService } from './favorites/favorites.service';
+import { SearchService } from './searchbox/search.service';
 
 @NgModule({
   imports: [
@@ -22,7 +25,9 @@ import { UtilsModule } from '../utils/utils.module';
     SearchboxComponent,
     AutocompleteLocationComponent,
     ItinerariesComponent,
+    FavoritesComponent
   ],
+  providers: [FavoritesService, SearchService],
   exports: [PlannerComponent]
 })
 export class PlannerModule {
@@ -52,7 +57,7 @@ export interface Leg {
   endTime: number;  // millisecond
   distance: number; // metter
   mode: TransitMode;
-  agencyTimeZonOffset: number; // millisecond
+  agencyTimeZoneOffset: number; // millisecond
   from: Place;
   to: Place;
   legGeometry: { points: string, length: number }; // points is the encoded polyline
